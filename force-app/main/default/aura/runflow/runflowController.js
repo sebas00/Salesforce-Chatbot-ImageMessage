@@ -26,7 +26,8 @@ console.log('vars', vars);
      delete vars.flowName;
       var ikeys = Object.keys(vars);
       for(var key of ikeys){
-        var uvalue = unescape(vars[key]).replace(/&amp;/g, '&').replace('+', ' ');
+        var uvalue = vars[key].replace(/\+/g, ' ')
+        console.log(key, vars[key]);
         inputVariables.push({
           name : key,
           type : 'String',
