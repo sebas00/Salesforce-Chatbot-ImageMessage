@@ -1,7 +1,13 @@
 <template>
     <div class={messageStyle}>
-            <img src={mcontent} />
-           <iframe width="100%" style="border:none;" src='https://sdodemo-main-166ce2cf6b6-16b452906e1.force.com/consumer/s/flowbot?language=en_US' ></iframe>
+            <template if:true={hasimg}>
+                    <img src={mcontent} />        
+                </template>
+                <template if:true={hasflow}>
+                        <iframe width="100%" style="border:none;" src={flowname} ></iframe>
+                    </template>
+            
+          
         <lightning-formatted-rich-text
             value={msgtxt}>
            
