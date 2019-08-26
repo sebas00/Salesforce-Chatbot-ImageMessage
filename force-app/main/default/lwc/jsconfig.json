@@ -5,9 +5,6 @@
         "paths": {
             "c/chatmenow": [
                 "chatmenow/chatmenow.js"
-            ],
-            "c/Chatmenow": [
-                "Chatmenow/Chatmenow.js"
             ]
         }
     },

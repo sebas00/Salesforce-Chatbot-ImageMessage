@@ -13,7 +13,10 @@ const SUPPORTED_USER_TYPES = [AGENT_USER_TYPE, CHASITOR_USER_TYPE];
 export default class ChatMessageDefaultUI extends BaseChatMessage {
     @track messageStyle = '';
     @track mcontent = '';
+    @track flowname = '';
     @track msgtxt = ''
+    @track hasimg = false;
+    @track hasflow = false;
     isSupportedUserType(userType) {
         return SUPPORTED_USER_TYPES.some((supportedUserType) => supportedUserType === userType);
     }
@@ -21,9 +24,22 @@ export default class ChatMessageDefaultUI extends BaseChatMessage {
     connectedCallback() {
         this.msgtxt = this.messageContent.value;
         if(this.messageContent.value.startsWith("image:")){
+            this.hasimg = true;
             //this.mcontent.sub
         this.conts = this.messageContent.value.split("'");
         this.mcontent = this.conts[1];
+        //this.mcontent = this.mcontent.replace('</a>', '')
+        this.msgtxt = ' ';
+        //this.messageContent.value = 'image';
+        }
+        if(this.messageContent.value.startsWith("flow:")){
+            this.hasflow = true;
+            //this.mcontent.sub
+        this.conts = this.messageContent.value.split(":");
+        
+        this.flowurl = unescape(this.conts[1]).replace(/&amp;/g, '&');
+        this.flowname = '/help/s/flowcomponent?flowName=' + this.flowurl;
+        console.log('flowname2', this.flowname);
         //this.mcontent = this.mcontent.replace('</a>', '')
         this.msgtxt = ' ';
         //this.messageContent.value = 'image';
