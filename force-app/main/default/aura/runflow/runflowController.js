@@ -1,10 +1,10 @@
 ({
     init : function (cmp) {
-        console.log('location', window.location.search);
+  //      console.log('location', window.location.search);
         var search = location.search.substring(1);
         //search = search.replace(/&amp;/g, '&');
 var vars = JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}', function(key, value) { return key===""?value:decodeURIComponent(value) })
-console.log('vars', vars);
+//console.log('vars', vars);
        // var urlParams = new URLSearchParams(window.location.search);
    //     var keys = urlParams.keys();
 //for(key of keys) { 
@@ -24,9 +24,11 @@ console.log('vars', vars);
         }
 */
      delete vars.flowName;
+     delete vars.language;
       var ikeys = Object.keys(vars);
       for(var key of ikeys){
-        var uvalue = unescape(vars[key]).replace(/&amp;/g, '&').replace('+', ' ');
+        var uvalue = vars[key].replace(/\+/g, ' ')
+       // console.log(key, vars[key]);
         inputVariables.push({
           name : key,
           type : 'String',
@@ -44,6 +46,6 @@ console.log('vars', vars);
       }
     },
     handleRouteChange : function(component, event, helper) {
-        console.log(event);
+     //   console.log(event);
     }
   });

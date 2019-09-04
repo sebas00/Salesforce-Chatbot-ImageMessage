@@ -5,4 +5,6 @@
     <targets>
       <target>lightningSnapin__ChatMessage</target>
     </targets>
+    <masterLabel>Community Chat Message</masterLabel>
+    <description>Show flows in bot screens, navigate to pages, records and Knowledge Articles</description>
 </LightningComponentBundle>
