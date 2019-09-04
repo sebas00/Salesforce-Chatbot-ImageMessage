@@ -92,6 +92,7 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
         if(this.messageContent.value.startsWith("article:")){
             //console.log('redirect');
             this.conts = this.messageContent.value.split(":");
+            console.log('redirect article', this.conts[1]);
             this.navigateArticle(this.conts[1]);
             this.msgtxt = '';
             this.hidden = true;
@@ -108,8 +109,9 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
 }
 
         if(this.messageContent.value.startsWith("page:")){
-            //console.log('redirect');
+            // console.log('redirect page');
             this.conts = this.messageContent.value.split(":");
+            console.log('redirect page', this.conts[1]);
             this.navigatePage(this.conts[1]);
             this.msgtxt = '';
             this.hidden = true;
