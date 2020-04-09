@@ -12,19 +12,22 @@
 }
 
 .agent.chat-content {
-    color: rgb(5, 5, 5);
-    background: #fff;
+	color: rgba(0, 0, 0, 0.8);
+    background: #f4f4f4;
     border-radius: 10px 10px 10px 0;
     float: left;
-    border-width:1px;  
-    border-style:solid;
+    border-width: 5px;
+    border-style: solid;
+    text-align: left;
+    border-color: #f4f4f4;
 }
 
 .chasitor.chat-content {
-    background: #fff;
-    color: rgba(34, 2, 2, 0.842);
-    border-radius: 10px 10px 10px 0;
+    background: #3A487D;
+    color:#fff;
+    border-radius: 10px 10px 0 10px;
     margin-left: auto;
-    border-width:1px;  
+    border-width: 5px;
     border-style:solid;
+    border-color: #3a487d;
 }

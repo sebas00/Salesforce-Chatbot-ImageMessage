@@ -46,7 +46,7 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
     }
     navigateArticle(url) {
         this.hasdirected = sessionStorage.getItem(url);
-        console.log('hasdirected', this.hasdirected);
+        console.log('hasdirected' + url, this.hasdirected);
         if(this.hasdirected){
             console.log('already went here');
             return;
@@ -59,6 +59,29 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
                 urlName: url
             }
         });
+    }
+    navigateUrl(url) {
+        this.hasdirected = sessionStorage.getItem(url);
+        console.log('hasdirected', this.hasdirected);
+        if(this.hasdirected){
+            console.log('already went here');
+            return;
+        }
+
+        this.splitty = url.split("'");
+        //this.mcontent = this.conts[1];
+        sessionStorage.setItem(url, true);
+        window.location = this.splitty[1];
+        //window.open(url);
+        /*
+        this[NavigationMixin.Navigate]({
+            type: 'standard__webPage',
+            attributes: {
+                
+                url: url
+            }
+        });
+        */
     }
     navigateRecord(recordId) {
         this.hasdirected = sessionStorage.getItem(recordId);
@@ -84,6 +107,7 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
 
     connectedCallback() {
        // console.log('cookies', document.cookie);
+       console.log('mess', this.messageContent);
         this.msgtxt = this.messageContent.value;
         if(this.messageContent.value.startsWith("clearCache")){
             //console.log('redirect');
@@ -117,6 +141,18 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
             this.hidden = true;
             
     }
+    if(this.messageContent.value.startsWith("url:")){
+        // console.log('redirect page');
+        this.conts = this.messageContent.value.split(":");
+        console.log('url', this.conts[1]);
+        this.contsarr = this.conts[1] + ":" + this.conts[2];
+        //this.mcontent = this.contsarr[1];
+        console.log('redirect url', this.contsarr);
+        this.navigateUrl(this.contsarr);
+        this.msgtxt = '';
+        this.hidden = true;
+        
+}
         if(this.messageContent.value.startsWith("image:")){
             this.hasimg = true;
             //this.mcontent.sub
@@ -126,6 +162,16 @@ export default class ChatMessageDefaultUI extends NavigationMixin(BaseChatMessag
         this.msgtxt = ' ';
         //this.messageContent.value = 'image';
         }
+        if(this.messageContent.value.startsWith("recipe:")){
+            this.hasimg = true;
+            //this.mcontent.sub
+        this.conts = this.messageContent.value.split(":");
+        this.mcontent = this.conts[2];
+        //this.mcontent = this.mcontent.replace('</a>', '')
+        this.msgtxt = this.conts[1];
+        //this.messageContent.value = 'image';
+        }
+
         if(this.messageContent.value.startsWith("flow:")){
             this.hasflow = true;
             //this.mcontent.sub
